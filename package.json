@@ -1,0 +1,35 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "tinder for devs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/appLec7.js",
+    "dev": "nodemon src/appLec7.js"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "project"
+  ],
+  "author": "Ankur Harshit",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "bullmq": "^5.71.1",
+    "cloudinary": "^1.41.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "ioredis": "^5.10.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0",
+    "node-cron": "^4.2.1",
+    "openai": "^6.33.0",
+    "socket.io": "^4.8.1",
+    "validator": "^13.15.0"
+  }
+}
