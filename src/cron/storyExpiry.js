@@ -3,7 +3,7 @@ const Post = require("../models/post");
 
 cron.schedule("*/1 * * * *", async () => {
     try {
-        console.log("Running story expiry cron job");
+        // console.log("Running story expiry cron job");
         const now = new Date();
         const result = await Post.updateMany(
             {

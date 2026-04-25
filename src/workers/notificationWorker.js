@@ -20,7 +20,7 @@ const worker = new Worker(
         entityId: postId,
         entityType: "POST",
       });
-      console.log("✅ Notification created");
+      // console.log("✅ Notification created");
     }
 
     if (job.name === "FOLLOWING") {
@@ -32,7 +32,7 @@ const worker = new Worker(
         type: "FOLLOWING",
         entityType: "FOLLOW",
       });
-      console.log("✅FOLLOWING Notification created");
+      // console.log("✅FOLLOWING Notification created");
     }
 
     if (job.name === "FOLLOW_SENT") {
@@ -45,7 +45,7 @@ const worker = new Worker(
         entityId: postId,
         entityType: "FOLLOW",
       });
-      console.log("✅FOLLOW_SENT Notification created");
+      // console.log("✅FOLLOW_SENT Notification created");
     }
 
     if (job.name === "FOLLOW_ACCEPTED") {
@@ -57,7 +57,7 @@ const worker = new Worker(
         type: "FOLLOW_ACCEPTED",
         entityType: "FOLLOW",
       });
-      console.log("✅FOLLOW_ACCEPTED Notification created");
+      // console.log("✅FOLLOW_ACCEPTED Notification created");
     }
     await redis.incr(`notif_count:${userId}`);
   },
