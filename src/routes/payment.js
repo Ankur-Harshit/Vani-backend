@@ -60,12 +60,12 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
 
     // update payment in DB //
     const paymentDetails = req.body.payload.payment.entity;
-    const payment = Payment.findOne({ orderId: paymentDetails.order_id });
+    const payment = await Payment.findOne({ orderId: paymentDetails.order_id });
     payment.status = paymentDetails.status;
     payment.paymentId = paymentDetails.id;
     await payment.save();
     const userId = payment.userId;
-    const user = User.findById(userId);
+    const user = await User.findById(userId);
     user.membership = payment.notes.membership;
     user.isVerified = true;
     await user.save();
