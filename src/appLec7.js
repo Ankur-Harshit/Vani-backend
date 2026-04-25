@@ -1,20 +1,21 @@
 // trying to make the signup dynamic by sending data from the server //
 const dotenv = require("dotenv");
 dotenv.config();
-const express = require('express');
+const express = require("express");
 const connectDB = require("./config/database");
 const app = express();
-const cookieParser = require('cookie-parser');
-const authRouter = require('./routes/auth');
-const profileRouter = require('./routes/profile');
-const userRouter = require('./routes/user');
+const cookieParser = require("cookie-parser");
+const authRouter = require("./routes/auth");
+const profileRouter = require("./routes/profile");
+const userRouter = require("./routes/user");
 const postRouter = require("./routes/post");
 const followRouter = require("./routes/follow");
 const likeRouter = require("./routes/like");
 const CommentRouter = require("./routes/comment");
 const feedRouter = require("./routes/feed");
-const cors = require('cors');
-const http = require('http');
+const paymentRouter = require("./routes/payment");
+const cors = require("cors");
+const http = require("http");
 const initializeSocket = require("./utils/socket");
 const chatRouter = require("./routes/chat");
 require("./workers/notificationWorker");
@@ -34,11 +35,10 @@ const corsOptions = {
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
-
 
 app.use("/", authRouter);
 app.use("/", profileRouter);
@@ -49,15 +49,18 @@ app.use("/", followRouter);
 app.use("/", likeRouter);
 app.use("/", CommentRouter);
 app.use("/", feedRouter);
+app.use("/", paymentRouter);
 
 const server = http.createServer(app);
 initializeSocket(server);
 
-connectDB().then(()=>{
+connectDB()
+  .then(() => {
     console.log("Connection Established Done");
-    server.listen(3000, ()=>{
-        console.log("Server is sucessfully listening on port 3000...");
-    })
-}).catch((err)=>{
+    server.listen(3000, () => {
+      console.log("Server is sucessfully listening on port 3000...");
+    });
+  })
+  .catch((err) => {
     console.error("Cannot Connect due to an Error + " + err);
-});
+  });
